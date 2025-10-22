@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { RSVPForm } from './RSVPForm';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { FloralCorner, FloralDivider, FloralBorder } from './FloralSVG';
-import dressCodeImage from 'figma:asset/a60a670b1d282df087da822b9d29fac98fde1577.png';
+import dressCodeImage from '../assets/a60a670b1d282df087da822b9d29fac98fde1577.png';
 
-export function InvitationContent() {
+export default function InvitationContent() {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -103,16 +103,11 @@ export function InvitationContent() {
             </div>
             
             <h1 className="text-6xl md:text-8xl lg:text-9xl text-[#6B3E3A] mb-6 font-serif italic">
-              Maria Chezka
+              Yzabelle Yang
             </h1>
-            
-            <div className="text-3xl md:text-5xl text-[#9C8B7A] mb-4 tracking-wider">
-              Meliz Delima
-            </div>
-
             <div className="relative inline-block my-8">
               <div className="text-7xl md:text-9xl text-[#B89176] italic" style={{ fontFamily: 'serif' }}>
-                twenty-fine
+                Baby Shower
               </div>
               <div className="absolute -top-4 -right-4 text-4xl md:text-6xl">✨</div>
             </div>
@@ -120,7 +115,7 @@ export function InvitationContent() {
             <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#9C8B7A] to-transparent mx-auto my-8"></div>
 
             <p className="text-xl md:text-2xl text-[#6B3E3A] tracking-widest uppercase">
-              Join Us For A Spectacular Celebration
+              Join Us!
             </p>
           </motion.div>
         </div>

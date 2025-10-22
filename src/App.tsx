@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { EnvelopeLanding } from './components/EnvelopeLanding';
-import { InvitationContent } from './components/InvitationContent';
+import InvitationContent from "./components/InvitationContent";
 import { Toaster } from './components/ui/sonner';
 import { motion, AnimatePresence } from 'motion/react';
 
