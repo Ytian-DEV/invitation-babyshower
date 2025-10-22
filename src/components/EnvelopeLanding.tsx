@@ -1,16 +1,20 @@
-import { motion } from 'motion/react';
-import { Mail } from 'lucide-react';
-import { FloralCorner } from './FloralSVG';
+import { motion } from "motion/react";
+import { Mail } from "lucide-react";
+import { FloralCorner } from "./FloralSVG";
 
 interface EnvelopeLandingProps {
   onOpen: () => void;
 }
 
 export function EnvelopeLanding({ onOpen }: EnvelopeLandingProps) {
+  const handleClick = () => {
+    onOpen();
+  };
+
   return (
     <div className="min-h-screen bg-[#F5F1EC] flex items-center justify-center p-4 overflow-hidden relative">
       {/* Floral decorations */}
-      <motion.div 
+      <motion.div
         className="absolute bottom-0 left-0 w-64 md:w-96 h-64 md:h-96 pointer-events-none opacity-60"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 0.6, x: 0 }}
@@ -19,7 +23,7 @@ export function EnvelopeLanding({ onOpen }: EnvelopeLandingProps) {
         <FloralCorner className="w-full h-full" />
       </motion.div>
 
-      <motion.div 
+      <motion.div
         className="absolute top-0 right-0 w-64 md:w-96 h-64 md:h-96 pointer-events-none opacity-60"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 0.6, x: 0 }}
@@ -31,14 +35,14 @@ export function EnvelopeLanding({ onOpen }: EnvelopeLandingProps) {
       {/* Subtle butterflies */}
       <motion.div
         className="absolute top-1/4 left-1/4 w-8 h-8 opacity-20"
-        animate={{ 
+        animate={{
           y: [0, -20, 0],
-          x: [0, 10, 0]
+          x: [0, 10, 0],
         }}
-        transition={{ 
+        transition={{
           duration: 4,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut",
         }}
       >
         <svg viewBox="0 0 40 40">
@@ -62,24 +66,26 @@ export function EnvelopeLanding({ onOpen }: EnvelopeLandingProps) {
           </p>
         </motion.div>
 
+        {/* Envelope Container - Single click handler */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
           className="relative mb-12"
+          onClick={handleClick}
         >
-          {/* Envelope */}
-          <div className="relative w-64 h-40 md:w-80 md:h-48 mx-auto">
+          <div className="relative w-64 h-40 md:w-80 md:h-48 mx-auto cursor-pointer">
             {/* Envelope body */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-br from-[#E8DDD0] to-[#D4C4B0] rounded-lg shadow-2xl"
               whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
               <div className="absolute inset-0 border-4 border-[#C9A690]/40 rounded-lg"></div>
-              
+
               {/* Decorative lines */}
-              <div className="absolute bottom-8 left-8 right-8 space-y-2">
+              <div className="absolute bottom-8 left-8 right-8 space-y-2 pointer-events-none">
                 <div className="h-0.5 bg-[#9C8B7A] opacity-30 w-3/4"></div>
                 <div className="h-0.5 bg-[#9C8B7A] opacity-30 w-1/2"></div>
               </div>
@@ -87,21 +93,24 @@ export function EnvelopeLanding({ onOpen }: EnvelopeLandingProps) {
 
             {/* Envelope flap */}
             <motion.div
-              className="absolute top-0 left-0 right-0 h-24 md:h-28 origin-top"
+              className="absolute top-0 left-0 right-0 h-24 md:h-28 origin-top pointer-events-none"
               style={{
-                background: 'linear-gradient(135deg, #C9A690 0%, #B89176 100%)',
-                clipPath: 'polygon(0 0, 50% 100%, 100% 0)',
+                background: "linear-gradient(135deg, #C9A690 0%, #B89176 100%)",
+                clipPath: "polygon(0 0, 50% 100%, 100% 0)",
               }}
               whileHover={{ rotateX: 15 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="absolute inset-0 border-t-4 border-x-4 border-[#9C8B7A]/30" style={{ clipPath: 'polygon(0 0, 50% 100%, 100% 0)' }}></div>
+              <div
+                className="absolute inset-0 border-t-4 border-x-4 border-[#9C8B7A]/30"
+                style={{ clipPath: "polygon(0 0, 50% 100%, 100% 0)" }}
+              ></div>
             </motion.div>
 
             {/* Wax seal with floral */}
             <motion.div
-              className="absolute top-16 md:top-20 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-[#6B3E3A] rounded-full flex items-center justify-center shadow-lg z-10"
-              whileHover={{ rotate: 360 }}
+              className="absolute top-16 md:top-20 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-[#6B3E3A] rounded-full flex items-center justify-center shadow-lg z-10 pointer-events-none"
+              whileHover={{ rotate: 360, scale: 1.1 }}
               transition={{ duration: 0.6 }}
             >
               <svg viewBox="0 0 40 40" className="w-8 h-8">
@@ -116,13 +125,13 @@ export function EnvelopeLanding({ onOpen }: EnvelopeLandingProps) {
         </motion.div>
 
         <motion.button
-          onClick={onOpen}
+          onClick={handleClick}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-[#6B3E3A] text-[#F5F1EC] px-12 py-4 rounded-full tracking-widest hover:bg-[#5A2D2A] transition-colors shadow-2xl border-2 border-[#9C8B7A]/30"
+          className="bg-[#6B3E3A] text-[#F5F1EC] px-12 py-4 rounded-full tracking-widest hover:bg-[#5A2D2A] transition-colors shadow-2xl border-2 border-[#9C8B7A]/30 cursor-pointer"
         >
           OPEN INVITATION
         </motion.button>
